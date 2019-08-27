@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlx.resume.mapper.ExperienceUser1Mapper" >
+  <resultMap id="BaseResultMap" type="com.zlx.resume.entity.ExperienceUser1" >
+    <id column="e_id" property="eId" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="e_start" property="eStart" jdbcType="CHAR" />
+    <result column="e_end" property="eEnd" jdbcType="CHAR" />
+    <result column="e_role" property="eRole" jdbcType="VARCHAR" />
+    <result column="e_behaviour" property="eBehaviour" jdbcType="VARCHAR" />
+    <result column="e_reason" property="eReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    e_id, u_id, c_id, e_start, e_end, e_role, e_behaviour, e_reason
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zlx.resume.entity.ExperienceUser1Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from experience_user1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from experience_user1
+    where e_id = #{eId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from experience_user1
+    where e_id = #{eId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zlx.resume.entity.ExperienceUser1Example" >
+    delete from experience_user1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zlx.resume.entity.ExperienceUser1" >
+    insert into experience_user1 (e_id, u_id, c_id, 
+      e_start, e_end, e_role, e_behaviour, 
+      e_reason)
+    values (#{eId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, 
+      #{eStart,jdbcType=CHAR}, #{eEnd,jdbcType=CHAR}, #{eRole,jdbcType=VARCHAR}, #{eBehaviour,jdbcType=VARCHAR}, 
+      #{eReason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlx.resume.entity.ExperienceUser1" >
+    insert into experience_user1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        e_id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="eStart != null" >
+        e_start,
+      </if>
+      <if test="eEnd != null" >
+        e_end,
+      </if>
+      <if test="eRole != null" >
+        e_role,
+      </if>
+      <if test="eBehaviour != null" >
+        e_behaviour,
+      </if>
+      <if test="eReason != null" >
+        e_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eId != null" >
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="eStart != null" >
+        #{eStart,jdbcType=CHAR},
+      </if>
+      <if test="eEnd != null" >
+        #{eEnd,jdbcType=CHAR},
+      </if>
+      <if test="eRole != null" >
+        #{eRole,jdbcType=VARCHAR},
+      </if>
+      <if test="eBehaviour != null" >
+        #{eBehaviour,jdbcType=VARCHAR},
+      </if>
+      <if test="eReason != null" >
+        #{eReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zlx.resume.entity.ExperienceUser1Example" resultType="java.lang.Integer" >
+    select count(*) from experience_user1
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update experience_user1
+    <set >
+      <if test="record.eId != null" >
+        e_id = #{record.eId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null" >
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cId != null" >
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.eStart != null" >
+        e_start = #{record.eStart,jdbcType=CHAR},
+      </if>
+      <if test="record.eEnd != null" >
+        e_end = #{record.eEnd,jdbcType=CHAR},
+      </if>
+      <if test="record.eRole != null" >
+        e_role = #{record.eRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eBehaviour != null" >
+        e_behaviour = #{record.eBehaviour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eReason != null" >
+        e_reason = #{record.eReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update experience_user1
+    set e_id = #{record.eId,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=INTEGER},
+      c_id = #{record.cId,jdbcType=INTEGER},
+      e_start = #{record.eStart,jdbcType=CHAR},
+      e_end = #{record.eEnd,jdbcType=CHAR},
+      e_role = #{record.eRole,jdbcType=VARCHAR},
+      e_behaviour = #{record.eBehaviour,jdbcType=VARCHAR},
+      e_reason = #{record.eReason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlx.resume.entity.ExperienceUser1" >
+    update experience_user1
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="eStart != null" >
+        e_start = #{eStart,jdbcType=CHAR},
+      </if>
+      <if test="eEnd != null" >
+        e_end = #{eEnd,jdbcType=CHAR},
+      </if>
+      <if test="eRole != null" >
+        e_role = #{eRole,jdbcType=VARCHAR},
+      </if>
+      <if test="eBehaviour != null" >
+        e_behaviour = #{eBehaviour,jdbcType=VARCHAR},
+      </if>
+      <if test="eReason != null" >
+        e_reason = #{eReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlx.resume.entity.ExperienceUser1" >
+    update experience_user1
+    set u_id = #{uId,jdbcType=INTEGER},
+      c_id = #{cId,jdbcType=INTEGER},
+      e_start = #{eStart,jdbcType=CHAR},
+      e_end = #{eEnd,jdbcType=CHAR},
+      e_role = #{eRole,jdbcType=VARCHAR},
+      e_behaviour = #{eBehaviour,jdbcType=VARCHAR},
+      e_reason = #{eReason,jdbcType=VARCHAR}
+    where e_id = #{eId,jdbcType=INTEGER}
+  </update>
+</mapper>

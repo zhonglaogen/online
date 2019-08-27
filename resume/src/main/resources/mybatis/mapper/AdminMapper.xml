@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlx.resume.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.zlx.resume.entity.Admin" >
+    <id column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="a_password" property="aPassword" jdbcType="VARCHAR" />
+    <result column="a_tel" property="aTel" jdbcType="CHAR" />
+    <result column="a_card" property="aCard" jdbcType="CHAR" />
+    <result column="a_mail" property="aMail" jdbcType="VARCHAR" />
+    <result column="a_name" property="aName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    a_id, a_password, a_tel, a_card, a_mail, a_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zlx.resume.entity.AdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zlx.resume.entity.AdminExample" >
+    delete from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zlx.resume.entity.Admin" >
+    insert into admin (a_id, a_password, a_tel, 
+      a_card, a_mail, a_name)
+    values (#{aId,jdbcType=INTEGER}, #{aPassword,jdbcType=VARCHAR}, #{aTel,jdbcType=CHAR}, 
+      #{aCard,jdbcType=CHAR}, #{aMail,jdbcType=VARCHAR}, #{aName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlx.resume.entity.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="aPassword != null" >
+        a_password,
+      </if>
+      <if test="aTel != null" >
+        a_tel,
+      </if>
+      <if test="aCard != null" >
+        a_card,
+      </if>
+      <if test="aMail != null" >
+        a_mail,
+      </if>
+      <if test="aName != null" >
+        a_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aPassword != null" >
+        #{aPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="aTel != null" >
+        #{aTel,jdbcType=CHAR},
+      </if>
+      <if test="aCard != null" >
+        #{aCard,jdbcType=CHAR},
+      </if>
+      <if test="aMail != null" >
+        #{aMail,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null" >
+        #{aName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zlx.resume.entity.AdminExample" resultType="java.lang.Integer" >
+    select count(*) from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update admin
+    <set >
+      <if test="record.aId != null" >
+        a_id = #{record.aId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aPassword != null" >
+        a_password = #{record.aPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aTel != null" >
+        a_tel = #{record.aTel,jdbcType=CHAR},
+      </if>
+      <if test="record.aCard != null" >
+        a_card = #{record.aCard,jdbcType=CHAR},
+      </if>
+      <if test="record.aMail != null" >
+        a_mail = #{record.aMail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aName != null" >
+        a_name = #{record.aName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update admin
+    set a_id = #{record.aId,jdbcType=INTEGER},
+      a_password = #{record.aPassword,jdbcType=VARCHAR},
+      a_tel = #{record.aTel,jdbcType=CHAR},
+      a_card = #{record.aCard,jdbcType=CHAR},
+      a_mail = #{record.aMail,jdbcType=VARCHAR},
+      a_name = #{record.aName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlx.resume.entity.Admin" >
+    update admin
+    <set >
+      <if test="aPassword != null" >
+        a_password = #{aPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="aTel != null" >
+        a_tel = #{aTel,jdbcType=CHAR},
+      </if>
+      <if test="aCard != null" >
+        a_card = #{aCard,jdbcType=CHAR},
+      </if>
+      <if test="aMail != null" >
+        a_mail = #{aMail,jdbcType=VARCHAR},
+      </if>
+      <if test="aName != null" >
+        a_name = #{aName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlx.resume.entity.Admin" >
+    update admin
+    set a_password = #{aPassword,jdbcType=VARCHAR},
+      a_tel = #{aTel,jdbcType=CHAR},
+      a_card = #{aCard,jdbcType=CHAR},
+      a_mail = #{aMail,jdbcType=VARCHAR},
+      a_name = #{aName,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>

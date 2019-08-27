@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlx.resume.mapper.CompanyuserMapper" >
+  <resultMap id="BaseResultMap" type="com.zlx.resume.entity.Companyuser" >
+    <id column="cu_id" property="cuId" jdbcType="INTEGER" />
+    <result column="cu_password" property="cuPassword" jdbcType="VARCHAR" />
+    <result column="cu_name" property="cuName" jdbcType="VARCHAR" />
+    <result column="cu_birth" property="cuBirth" jdbcType="CHAR" />
+    <result column="cu_tel" property="cuTel" jdbcType="CHAR" />
+    <result column="cu_eamil" property="cuEamil" jdbcType="VARCHAR" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="cu_gender" property="cuGender" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cu_id, cu_password, cu_name, cu_birth, cu_tel, cu_eamil, c_id, cu_gender
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zlx.resume.entity.CompanyuserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from companyuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from companyuser
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from companyuser
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zlx.resume.entity.CompanyuserExample" >
+    delete from companyuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zlx.resume.entity.Companyuser" >
+    insert into companyuser (cu_id, cu_password, cu_name, 
+      cu_birth, cu_tel, cu_eamil, 
+      c_id, cu_gender)
+    values (#{cuId,jdbcType=INTEGER}, #{cuPassword,jdbcType=VARCHAR}, #{cuName,jdbcType=VARCHAR}, 
+      #{cuBirth,jdbcType=CHAR}, #{cuTel,jdbcType=CHAR}, #{cuEamil,jdbcType=VARCHAR}, 
+      #{cId,jdbcType=INTEGER}, #{cuGender,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlx.resume.entity.Companyuser" >
+    insert into companyuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cuId != null" >
+        cu_id,
+      </if>
+      <if test="cuPassword != null" >
+        cu_password,
+      </if>
+      <if test="cuName != null" >
+        cu_name,
+      </if>
+      <if test="cuBirth != null" >
+        cu_birth,
+      </if>
+      <if test="cuTel != null" >
+        cu_tel,
+      </if>
+      <if test="cuEamil != null" >
+        cu_eamil,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="cuGender != null" >
+        cu_gender,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cuId != null" >
+        #{cuId,jdbcType=INTEGER},
+      </if>
+      <if test="cuPassword != null" >
+        #{cuPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cuName != null" >
+        #{cuName,jdbcType=VARCHAR},
+      </if>
+      <if test="cuBirth != null" >
+        #{cuBirth,jdbcType=CHAR},
+      </if>
+      <if test="cuTel != null" >
+        #{cuTel,jdbcType=CHAR},
+      </if>
+      <if test="cuEamil != null" >
+        #{cuEamil,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cuGender != null" >
+        #{cuGender,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zlx.resume.entity.CompanyuserExample" resultType="java.lang.Integer" >
+    select count(*) from companyuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update companyuser
+    <set >
+      <if test="record.cuId != null" >
+        cu_id = #{record.cuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cuPassword != null" >
+        cu_password = #{record.cuPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuName != null" >
+        cu_name = #{record.cuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuBirth != null" >
+        cu_birth = #{record.cuBirth,jdbcType=CHAR},
+      </if>
+      <if test="record.cuTel != null" >
+        cu_tel = #{record.cuTel,jdbcType=CHAR},
+      </if>
+      <if test="record.cuEamil != null" >
+        cu_eamil = #{record.cuEamil,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cId != null" >
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cuGender != null" >
+        cu_gender = #{record.cuGender,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update companyuser
+    set cu_id = #{record.cuId,jdbcType=INTEGER},
+      cu_password = #{record.cuPassword,jdbcType=VARCHAR},
+      cu_name = #{record.cuName,jdbcType=VARCHAR},
+      cu_birth = #{record.cuBirth,jdbcType=CHAR},
+      cu_tel = #{record.cuTel,jdbcType=CHAR},
+      cu_eamil = #{record.cuEamil,jdbcType=VARCHAR},
+      c_id = #{record.cId,jdbcType=INTEGER},
+      cu_gender = #{record.cuGender,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlx.resume.entity.Companyuser" >
+    update companyuser
+    <set >
+      <if test="cuPassword != null" >
+        cu_password = #{cuPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cuName != null" >
+        cu_name = #{cuName,jdbcType=VARCHAR},
+      </if>
+      <if test="cuBirth != null" >
+        cu_birth = #{cuBirth,jdbcType=CHAR},
+      </if>
+      <if test="cuTel != null" >
+        cu_tel = #{cuTel,jdbcType=CHAR},
+      </if>
+      <if test="cuEamil != null" >
+        cu_eamil = #{cuEamil,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cuGender != null" >
+        cu_gender = #{cuGender,jdbcType=BIT},
+      </if>
+    </set>
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlx.resume.entity.Companyuser" >
+    update companyuser
+    set cu_password = #{cuPassword,jdbcType=VARCHAR},
+      cu_name = #{cuName,jdbcType=VARCHAR},
+      cu_birth = #{cuBirth,jdbcType=CHAR},
+      cu_tel = #{cuTel,jdbcType=CHAR},
+      cu_eamil = #{cuEamil,jdbcType=VARCHAR},
+      c_id = #{cId,jdbcType=INTEGER},
+      cu_gender = #{cuGender,jdbcType=BIT}
+    where cu_id = #{cuId,jdbcType=INTEGER}
+  </update>
+</mapper>
