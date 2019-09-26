@@ -19,11 +19,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-/**
- * Created by jiangyunxiong on 2018/5/22.
- */
 @Service
 public class UserService {
+
 
     @Autowired
     User1Mapper userMapper;

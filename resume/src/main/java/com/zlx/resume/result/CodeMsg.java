@@ -20,7 +20,11 @@ public class CodeMsg {
     public static CodeMsg PRIMARY_ERROR = new CodeMsg(500216, "主键冲突");
 
     //查询用户经历模块 5003XX
-    public static CodeMsg CARD_NOT_EXIST = new CodeMsg(500314, "身份证号不存在");
+    public static CodeMsg CARD_NOT_EXIST = new CodeMsg(500314, "此身份证号用户信息不存在");
+    public static CodeMsg COED_IS_EXIST = new CodeMsg(500315, "查询验证码已经发送,三分钟内有效");
+    public static CodeMsg COED_IS_WRONG = new CodeMsg(500316, "验证码错误");
+    public static CodeMsg USER_NOT_CHECK = new CodeMsg(500317, "未验证的查询");
+
 
     //订单模块 5004XX
     public static CodeMsg ORDER_NOT_EXIST = new CodeMsg(500400, "订单不存在");

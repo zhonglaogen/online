@@ -26,9 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-/**
- * Created by jiangyunxiong on 2018/5/22.
- */
+
 @Service
 public class CompanyService {
 
@@ -146,27 +144,6 @@ public class CompanyService {
         return user;
     }
 
-    /**
-     * 查询用户信息
-     * @param cuser
-     * @param findVo
-     * @return
-     */
 
-    public User1 getUser(Companyuser cuser, FindVo findVo) {
-        //比对cuser的id和redis存的验证码是否一致
-        User1Example user1Example=new User1Example();
-        User1Example.Criteria criteria = user1Example.createCriteria();
-        criteria.andUCardEqualTo(findVo.getIdCard()).andUNameEqualTo(findVo.getName());
-        List<User1> user1s = user1Mapper.selectByExample(user1Example);
-        User1 user1=null;
-        if(user1s.size()>0){
-            user1=user1s.get(0);
-            //存入redis中
-            return user1;
-        }else {
-            throw new GlobalException(CodeMsg.CARD_NOT_EXIST);
-        }
 
-    }
 }

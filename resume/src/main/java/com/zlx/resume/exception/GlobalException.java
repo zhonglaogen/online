@@ -3,7 +3,6 @@ package com.zlx.resume.exception;
 import com.zlx.resume.result.CodeMsg;
 
 /**
- * Created by jiangyunxiong on 2018/5/22.
  * <p>
  * 自定义全局异常类
  */

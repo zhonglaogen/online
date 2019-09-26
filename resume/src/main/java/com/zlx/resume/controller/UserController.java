@@ -10,9 +10,6 @@ public class UserController {
 
 
 
-    @RequestMapping("/cook")
-    public User1 get(User1 user){
-        return user;
-    }
+
 
 }

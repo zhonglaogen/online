@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 
-/**
- * Created by jiangyunxiong on 2018/5/21.
- */
+
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -35,6 +33,13 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * 用户登录
+     * @param response
+     * @param loginVo
+     * @return
+     */
+
     @RequestMapping("/do_login")
     @ResponseBody
     public Result<String> doLogin(HttpServletResponse response, @Valid LoginVo loginVo) {//加入JSR303参数校验
@@ -43,6 +48,12 @@ public class LoginController {
         return Result.success(token);
     }
 
+    /**
+     * 企业用户登录
+     * @param response
+     * @param loginVo
+     * @return
+     */
     @RequestMapping("/do_culogin")
     @ResponseBody
     public Result<String> docuLogin(HttpServletResponse response, @Valid LoginVo loginVo) {//加入JSR303参数校验

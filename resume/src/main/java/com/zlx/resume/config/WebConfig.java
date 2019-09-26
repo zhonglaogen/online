@@ -8,8 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
- * Created by jiangyunxiong on 2018/5/22.
- *
  * 自定参数解析器, 作用：改变SpringMVC的Controller传入参数，实现可以User替换Token做为参数从登陆页面传到商品列表页面
  */
 @Configuration
@@ -19,6 +17,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     UserArgumentResolver userArgumentResolver;
     @Autowired
     CompanyUserArgumentResolver companyUserArgumentResolver;
+    @Autowired
+    CompanyFindArgumentResolver companyFindArgumentResolver;
 
     /**
      * SpringMVC框架回调addArgumentResolvers，然后给Controller的参数赋值
@@ -26,7 +26,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        //转换user的参数转换器
         argumentResolvers.add(userArgumentResolver);
+        //转换的companyUser参数转换器
         argumentResolvers.add(companyUserArgumentResolver);
+        //转换CuCheckState的参数转换器
+        argumentResolvers.add(companyFindArgumentResolver);
     }
 }
