@@ -2,8 +2,10 @@ package com.zlx.resume.mail;
 
 import com.zlx.resume.entity.Companyuser;
 import com.zlx.resume.entity.User1;
+import com.zlx.resume.rabitmq.MailAddress;
 import com.zlx.resume.vo.FindVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailMessage;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -43,13 +45,13 @@ public class MyMailService {
     }
 
 
-    public String sendCode(Companyuser user, User1 user1){
+    public String sendCode(MailAddress address){
         String code = createCode();
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setSubject("查询简历验证码");
         simpleMailMessage.setText("您的简历将会被查看，验证码为"+code);
-        simpleMailMessage.setTo(user1.getuEmail());
-        simpleMailMessage.setFrom(user.getCuEamil());
+        simpleMailMessage.setTo(address.getnMail());
+        simpleMailMessage.setFrom(address.getoMail());
         javaMailSender.send(simpleMailMessage);
         return code;
     }

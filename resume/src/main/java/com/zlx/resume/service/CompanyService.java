@@ -3,21 +3,18 @@ package com.zlx.resume.service;
 
 
 import com.alibaba.druid.util.StringUtils;
-import com.zlx.resume.controller.CompanyUserController;
 import com.zlx.resume.entity.Companyuser;
 import com.zlx.resume.entity.CompanyuserExample;
-import com.zlx.resume.entity.User1;
-import com.zlx.resume.entity.User1Example;
 import com.zlx.resume.exception.GlobalException;
 import com.zlx.resume.mapper.CompanyuserMapper;
 import com.zlx.resume.mapper.User1Mapper;
+import com.zlx.resume.myentity.CompanyApply;
+import com.zlx.resume.mymapper.ApplyMapper;
 import com.zlx.resume.redis.CompanyKey;
 import com.zlx.resume.redis.RedisService;
 import com.zlx.resume.redis.UserKey;
 import com.zlx.resume.result.CodeMsg;
-import com.zlx.resume.util.MD5Util;
 import com.zlx.resume.util.UUIDUtil;
-import com.zlx.resume.vo.FindVo;
 import com.zlx.resume.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +35,41 @@ public class CompanyService {
     @Autowired
     RedisService redisService;
 
+    @Autowired
+    ApplyMapper apply;
+
     public static final String COOKIE_NAME_TOKEN = "cutoken";
+
+
+    /**
+     * 公司关联账号申请
+     * @param cuser
+     * @param capply
+     */
+    public void cuApply(Companyuser cuser, CompanyApply capply){
+        //检测是否已关联公司，是否已经提交申请
+        Integer cId = cuser.getcId();
+        if (cId!=null){
+            //关联公司已经存在
+            throw new GlobalException(CodeMsg.COMPANY_IS_EXIST);
+        }
+        capply.setCuId(cuser.getCuId());
+        apply.insertApply(capply);
+    }
+
+    /**
+     * 查看申请请求
+     * @param cuser
+     */
+    public void findApply(Companyuser cuser){
+        List<CompanyApply> apply = this.apply.findApply(cuser);
+        for (int i = 0; i < apply.size(); i++) {
+            System.out.println(apply.get(i).toString());
+
+        }
+    }
+
+
 
     public Companyuser getById(String id) {
         //对象缓存

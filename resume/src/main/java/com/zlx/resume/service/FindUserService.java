@@ -8,6 +8,7 @@ import com.zlx.resume.entity.User1Example;
 import com.zlx.resume.exception.GlobalException;
 import com.zlx.resume.mail.MyMailService;
 import com.zlx.resume.mapper.User1Mapper;
+import com.zlx.resume.rabitmq.MQSender;
 import com.zlx.resume.redis.CompanyKey;
 import com.zlx.resume.redis.RedisService;
 import com.zlx.resume.redis.UserKey;
@@ -29,6 +30,8 @@ public class FindUserService {
     MyMailService myMailService;
     @Autowired
     User1Mapper userMapper;
+    @Autowired
+    MQSender mqSender;
 
     /**
      * 发送验证码
@@ -45,9 +48,9 @@ public class FindUserService {
         //redis查询vo的身份证号码对应的信息，没有再查mysql
         User1 user1 = redisService.get(UserKey.getByCard, "" + findVo.getIdCard(), User1.class);
         if (user1 != null) {
-            String s = myMailService.sendCode(user, user1);
-            //将验证码存在redis中，失效时间为五分钟
-            redisService.set(CompanyKey.getCode,""+user.getCuId(),s);
+            //放入消息队列，异步发送
+            mqSender.sendMessage(user, user1);
+
             return;
         }
 
@@ -66,9 +69,9 @@ public class FindUserService {
         }
         //将进行检验的用户存入redis，方便下次检验
         redisService.set(UserKey.getByCard,""+findVo.getIdCard(),user1);
-        String s = myMailService.sendCode(user, user1);
-        //将验证码存在redis中，
-        redisService.set(CompanyKey.getCode,""+user.getCuId(),s);
+
+        //放入消息队列，异步发送
+        mqSender.sendMessage(user, user1);
 
     }
 

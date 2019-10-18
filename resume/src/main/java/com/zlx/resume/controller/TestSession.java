@@ -2,6 +2,7 @@ package com.zlx.resume.controller;
 
 import com.zlx.resume.entity.Admin;
 import com.zlx.resume.mapper.AdminMapper;
+import com.zlx.resume.rabitmq.MQSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 public class TestSession {
     @Autowired
     AdminMapper adminMapper;
+    @Autowired
+    MQSender mqSender;
 
     @GetMapping(value = "session")
     public String test(HttpSession session){
@@ -27,6 +30,7 @@ public class TestSession {
         return admin.toString();
 
     }
+
 
 
 }

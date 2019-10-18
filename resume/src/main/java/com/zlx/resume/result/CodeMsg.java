@@ -24,10 +24,11 @@ public class CodeMsg {
     public static CodeMsg COED_IS_EXIST = new CodeMsg(500315, "查询验证码已经发送,三分钟内有效");
     public static CodeMsg COED_IS_WRONG = new CodeMsg(500316, "验证码错误");
     public static CodeMsg USER_NOT_CHECK = new CodeMsg(500317, "未验证的查询");
+    public static CodeMsg USER_NOT_RESIT=new CodeMsg(500318,"账号未关联公司");
 
 
-    //订单模块 5004XX
-    public static CodeMsg ORDER_NOT_EXIST = new CodeMsg(500400, "订单不存在");
+    //添加关联公司模块 5004XX
+    public static CodeMsg COMPANY_IS_EXIST = new CodeMsg(500400, "关联公司已经存在");
 
     //秒杀模块 5005XX
     public static CodeMsg SECKILL_OVER = new CodeMsg(500500, "商品已经秒杀完毕");

@@ -1,5 +1,6 @@
 package com.zlx.resume.controller;
 
+import com.zlx.resume.entity.Companyuser;
 import com.zlx.resume.result.Result;
 import com.zlx.resume.service.CompanyService;
 import com.zlx.resume.service.UserService;
@@ -56,10 +57,12 @@ public class LoginController {
      */
     @RequestMapping("/do_culogin")
     @ResponseBody
-    public Result<String> docuLogin(HttpServletResponse response, @Valid LoginVo loginVo) {//加入JSR303参数校验
+    public Result<String> docuLogin(HttpServletResponse response, @Valid LoginVo loginVo, Companyuser companyuser) {//加入JSR303参数校验
         log.info(loginVo.toString());
-        String token = companyService.login(response, loginVo);
-        return Result.success(token);
+        if (companyuser==null){
+            String token = companyService.login(response, loginVo);
+        }
+        return Result.success("登录成功");
     }
 
 }

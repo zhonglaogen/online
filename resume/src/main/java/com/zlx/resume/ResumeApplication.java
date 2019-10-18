@@ -10,7 +10,7 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 
 @EnableCaching
-@MapperScan(value = "com.zlx.resume.mapper")
+@MapperScan(value = "com.zlx.resume.mapper,com.zlx.resume.mymapper")
 @SpringBootApplication
 public class ResumeApplication {
 

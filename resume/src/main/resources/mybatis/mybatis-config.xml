@@ -9,6 +9,7 @@
     </settings>
     <typeAliases >
         <package name="com.zlx.resume.entity"/>
+        <package name="com.zlx.resume.myentity"/>
     </typeAliases>
 
 </configuration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlx.resume.mymapper.ApplyMapper">
+    <!--映射关联申请的resultmap-->
+    <resultMap id="findResultMap" type="com.zlx.resume.myentity.CompanyApply">
+        <id column="ca_id" property="caId"/>
+        <result column="cu_id" property="cuId"/>
+        <result column="c_registcode" property="cRegistcode"/>
+        <result column="a_result" property="aResult"/>
+        <result column="c_id" property="cId"/>
+    </resultMap>
+
+
+    <insert id="insertApply" parameterType="com.zlx.resume.myentity.CompanyApply">
+      insert into company_appply(cu_id, c_registcode,a_result,c_id)
+                        value(#{cuId},#{cRegistcode},#{aResult},#{cId})
+    </insert>
+
+    <select id="findApply" parameterType="Companyuser" resultMap="findResultMap">
+        select * from company_appply where cu_id=#{cuId}
+    </select>
+
+</mapper>

@@ -4,6 +4,7 @@ import com.zlx.resume.dto.CuCheckState;
 import com.zlx.resume.dto.Expirence;
 import com.zlx.resume.entity.Companyuser;
 import com.zlx.resume.entity.User1;
+import com.zlx.resume.myentity.CompanyApply;
 import com.zlx.resume.result.CodeMsg;
 import com.zlx.resume.result.Result;
 import com.zlx.resume.service.AddExpirenceService;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,6 +33,44 @@ public class CompanyUserController {
     AddExpirenceService addExpirenceService;
 
     /**
+     * 为账号添加关联公司申请
+     *
+     * @return
+     */
+    @RequestMapping("/apply")
+    public Result<Object> addCompanyApply(Companyuser user, CompanyApply companyApply) {
+        if (user == null) {
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        companyService.cuApply(user, companyApply);
+
+
+        //实名制添加
+        //添加要关联公司的名称
+        //公司位置
+        //
+        return Result.success(companyApply);
+
+    }
+
+    /**
+     * 查看申请结果
+     *
+     * @return
+     */
+    @RequestMapping("/getresult")
+    public Result<Object> getApplyResult(Companyuser user) {
+        if (user == null) {
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+
+        companyService.findApply(user);
+        return null;
+
+
+    }
+
+    /**
      * @param user
      * @param findVo
      * @return
@@ -44,7 +82,7 @@ public class CompanyUserController {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
         findUserService.sendCode(user, findVo);
-        return Result.success("验证码发送成功");
+        return Result.success("已经发送");
     }
 
 
@@ -105,6 +143,10 @@ public class CompanyUserController {
             //未验证的用户
             return Result.error(CodeMsg.USER_NOT_CHECK);
         }
+        if (user.getcId() == null) {
+            //未注册公司的账号,不可添加经历
+            return Result.error(CodeMsg.USER_NOT_RESIT);
+        }
         addExpirenceService.addExpir(user, state, expirence);
         return Result.success("添加成功");
 
@@ -113,13 +155,14 @@ public class CompanyUserController {
 
     /**
      * 查询工作经历
+     *
      * @param user
      * @param state
      * @return
      */
 
     @RequestMapping("/findexpri")
-    public Result<List<Expirence>> findExpir(Companyuser user, CuCheckState state){
+    public Result<List<Expirence>> findExpir(Companyuser user, CuCheckState state) {
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
@@ -127,7 +170,7 @@ public class CompanyUserController {
             //未验证的用户
             return Result.error(CodeMsg.USER_NOT_CHECK);
         }
-        List<Expirence> expir = addExpirenceService.findExpir( user, state);
+        List<Expirence> expir = addExpirenceService.findExpir(user, state);
         return Result.success(expir);
     }
 
