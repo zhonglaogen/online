@@ -1,6 +1,7 @@
 package com.zlx.resume.controller;
 
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,16 +26,19 @@ public class PathController {
 
     }
 
+    @ApiOperation(value = "欢迎首页")
     @GetMapping("/")
     public String welcome(){
         return "welcome";
     }
 
+    @ApiOperation(value = "普通用户登录界面")
     @GetMapping("/login")
     public String loginPage(){
         return "login";
     }
 
+    @ApiOperation(value = "企业用户登录界面")
     @GetMapping("/culogin")
     public String culoginPage(){
         return "culogin";
