@@ -23,7 +23,13 @@ public class RedisService {
         try {
             jedis = jedisPool.getResource();
             //对key增加前缀，即可用于分类，也避免key重复
-            String realKey = prefix.getPrefix() + key;
+            String realKey = null;
+            if (null != prefix) {
+                realKey = prefix.getPrefix() + key;
+            } else {
+                realKey = key;
+            }
+
             String str = jedis.get(realKey);
             T t = stringToBean(str, clazz);
             return t;
@@ -67,7 +73,12 @@ public class RedisService {
         try {
             jedis = jedisPool.getResource();
             //生成真正的key
-            String realKey = prefix.getPrefix() + key;
+            String realKey = null;
+            if (null != prefix) {
+                realKey = prefix.getPrefix() + key;
+            } else {
+                realKey = key;
+            }
             long ret = jedis.del(realKey);
             return ret > 0;
         } finally {
@@ -83,7 +94,12 @@ public class RedisService {
         try {
             jedis = jedisPool.getResource();
             //生成真正的key
-            String realKey = prefix.getPrefix() + key;
+            String realKey = null;
+            if (null != prefix) {
+                realKey = prefix.getPrefix() + key;
+            } else {
+                realKey = key;
+            }
             return jedis.exists(realKey);
         } finally {
             returnToPool(jedis);
@@ -99,7 +115,12 @@ public class RedisService {
         try {
             jedis = jedisPool.getResource();
             //生成真正的key
-            String realKey = prefix.getPrefix() + key;
+            String realKey = null;
+            if (null != prefix) {
+                realKey = prefix.getPrefix() + key;
+            } else {
+                realKey = key;
+            }
             return jedis.incr(realKey);
         } finally {
             returnToPool(jedis);
@@ -114,7 +135,12 @@ public class RedisService {
         try {
             jedis = jedisPool.getResource();
             //生成真正的key
-            String realKey = prefix.getPrefix() + key;
+            String realKey = null;
+            if (null != prefix) {
+                realKey = prefix.getPrefix() + key;
+            } else {
+                realKey = key;
+            }
             return jedis.decr(realKey);
         } finally {
             returnToPool(jedis);
@@ -123,6 +149,7 @@ public class RedisService {
 
     /**
      * 将bean以json的格式存储
+     *
      * @param value
      * @param <T>
      * @return
@@ -147,6 +174,7 @@ public class RedisService {
 
     /**
      * 将json拿出来，转换为相应的bean
+     *
      * @param str
      * @param clazz
      * @param <T>

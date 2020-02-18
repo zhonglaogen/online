@@ -18,6 +18,7 @@ import com.zlx.resume.vo.FindVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -146,6 +147,21 @@ public class FindUserService {
     }
 
 
-
-
+    public void cleanFindHistory(HttpServletRequest request, HttpServletResponse response, Companyuser user) {
+        //        分别清理浏览器的缓存和redis的缓存
+        Cookie[] cookies = request.getCookies();
+        Cookie cleanCookie = null;
+        for(Cookie c : cookies){
+            if (c.getName().equals(COOKIE_NAME_FIND_TOKEN)) {
+                cleanCookie = c;
+            }
+        }
+        if (null == cleanCookie){
+            return;
+        }
+        String hashValue = cleanCookie.getValue();
+        redisService.delete(CompanyKey.getUserToken,hashValue);
+        cleanCookie.setMaxAge(0);
+        response.addCookie(cleanCookie);
+    }
 }

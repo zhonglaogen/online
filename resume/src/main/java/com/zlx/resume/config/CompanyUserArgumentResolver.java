@@ -48,25 +48,24 @@ public class CompanyUserArgumentResolver implements HandlerMethodArgumentResolve
         HttpServletResponse response = nativeWebRequest.getNativeResponse(HttpServletResponse.class);
 
         //用户传来参数
-        String paramToken = request.getParameter(CompanyService.COOKIE_NAME_TOKEN);
+//        String paramToken = request.getParameter(CompanyService.COOKIE_NAME_TOKEN);
         //request传来的cookie
-        String cookieToken = getCookieValue(request, CompanyService.COOKIE_NAME_TOKEN);
-        if (StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
+        Cookie cookieToken = getCookieValue(request, CompanyService.COOKIE_NAME_TOKEN);
+        if (null == cookieToken) {
             return null;
         }
-        String token = StringUtils.isEmpty(paramToken) ? cookieToken : paramToken;
-        return userService.getByToken(response, token);
+        return userService.getByToken(response, cookieToken.getName() ,cookieToken.getValue());
     }
 
     //遍历所有cookie，找到需要的那个cookie
-    private String getCookieValue(HttpServletRequest request, String cookiName) {
+    public Cookie getCookieValue(HttpServletRequest request, String cookiName) {
         Cookie[] cookies = request.getCookies();
         if (cookies == null || cookies.length <= 0) {
             return null;
         }
         for (Cookie cookie : cookies) {
-            if (cookie.getName().equals(cookiName)) {
-                return cookie.getValue();
+            if (cookie.getName().contains(cookiName)) {
+                return cookie;
             }
         }
         return null;

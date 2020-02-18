@@ -35,7 +35,7 @@ public class PathController {
     @ApiOperation(value = "普通用户登录界面")
     @GetMapping("/login")
     public String loginPage(){
-        return "login";
+        return "l2";
     }
 
     @ApiOperation(value = "企业用户登录界面")

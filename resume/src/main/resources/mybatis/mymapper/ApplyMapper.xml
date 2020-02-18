@@ -20,4 +20,8 @@
         select * from company_appply where cu_id=#{cuId}
     </select>
 
+    <update id="updateApply" parameterType="com.zlx.resume.myentity.CompanyApply">
+        update company_appply set a_result = #{aResult} where ca_id = #{caId}
+    </update>
+
 </mapper>

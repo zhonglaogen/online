@@ -19,4 +19,9 @@ public interface ApplyMapper {
      */
     List<CompanyApply> findApply(Companyuser companyuser);
 
+    /**
+     * 取消申请，申请结果为3
+     * @param caId
+     */
+    void updateApply(Integer caId);
 }

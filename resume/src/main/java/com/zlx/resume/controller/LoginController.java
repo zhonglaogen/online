@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -35,7 +36,7 @@ public class LoginController {
 
     @GetMapping("/to_login")
     public String toLogin() {
-        return "login";
+        return "l2";
     }
 
     /**
@@ -69,6 +70,16 @@ public class LoginController {
             String token = companyService.login(response, loginVo);
         }
         return Result.success("登录成功");
+    }
+
+    @GetMapping("/do_culogout")
+    @ResponseBody
+    public Result<String> docuLoginOut(HttpServletRequest request, HttpServletResponse response, Companyuser companyuser) {//加入JSR303参数校验
+        if (companyuser != null){
+            companyService.loginOut(request,response, companyuser);
+            return Result.success("退出成功");
+        }
+        return Result.success("退出成功");
     }
 
 }

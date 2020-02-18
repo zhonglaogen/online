@@ -2,6 +2,7 @@ package com.zlx.resume.controller;
 
 import com.zlx.resume.dto.CuCheckState;
 import com.zlx.resume.dto.Expirence;
+import com.zlx.resume.entity.Company;
 import com.zlx.resume.entity.Companyuser;
 import com.zlx.resume.entity.User1;
 import com.zlx.resume.myentity.CompanyApply;
@@ -12,12 +13,14 @@ import com.zlx.resume.service.CompanyService;
 import com.zlx.resume.service.FindUserService;
 import com.zlx.resume.vo.FindVo;
 import io.swagger.annotations.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -41,15 +44,15 @@ public class CompanyUserController {
      *
      * @return
      */
-    @ApiOperation(value="申请关联公司接口")
+    @ApiOperation(value = "申请关联公司接口")
     @ApiImplicitParam(name = "companyApply", value = "申请信息", required = true, dataType = "CompanyApply")
 
     @PostMapping("/apply")
-    public Result<Object> addCompanyApply(Companyuser user, CompanyApply companyApply) {
+    public Result<Object> addCompanyApply(Companyuser user, CompanyApply companyApply, Company company) {
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
-        companyService.cuApply(user, companyApply);
+        companyService.cuApply(user, companyApply,company);
 
 
         //实名制添加
@@ -66,14 +69,25 @@ public class CompanyUserController {
      * @return
      */
     @GetMapping("/getresult")
-    public Result<Object> getApplyResult(Companyuser user) {
+    public Result<List<CompanyApply>> getApplyResult(Companyuser user) {
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
+        List<CompanyApply> apply = companyService.findApply(user);
 
-        companyService.findApply(user);
-        return null;
+        return Result.success(apply);
 
+    }
+
+    /**
+     * 取消申请
+     */
+    public Result cancelApply(Companyuser user,CompanyApply companyApply){
+        if (user == null) {
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        companyService.cancelApply(companyApply);
+        return Result.success("取消成功");
 
     }
 
@@ -106,14 +120,33 @@ public class CompanyUserController {
     @ApiOperation(value = "核对验证码接口")
     @ApiImplicitParam(name = "findVo", value = "主要是传入手机收到的验证码进行核对", required = true, dataType = "FindVo")
     @PostMapping("/checkcode")
-    public Result<String> checkCode(HttpServletResponse response, Companyuser user, FindVo findVo) {
+    public Result<String> checkCode(HttpServletResponse response, Companyuser user, FindVo findVo, CuCheckState state) {
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        if (state != null) {
+            return Result.success("验证已经通过");
         }
         //将验证码信息以 userid：code的形式存入redis
         findUserService.checkCode(response, user, findVo);
         return Result.success("验证通过");
 
+    }
+
+    /**
+     * 移除此条查询缓存
+     *
+     * @param user
+     * @return
+     */
+    @GetMapping("/clean_history")
+    public Result<String> cleanFind(HttpServletRequest request,
+                                    HttpServletResponse response, Companyuser user) {
+        if (user == null) {
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        findUserService.cleanFindHistory(request,response,user);
+        return Result.success("已清理");
     }
 
     /**
@@ -163,7 +196,6 @@ public class CompanyUserController {
         }
         addExpirenceService.addExpir(user, state, expirence);
         return Result.success("添加成功");
-
 
     }
 

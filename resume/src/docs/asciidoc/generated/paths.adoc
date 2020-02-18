@@ -1,0 +1,1159 @@
+
+[[_paths]]
+== Paths
+
+[[_welcomeusingget]]
+=== 欢迎首页
+....
+GET /
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* path-controller
+
+
+[[_getadminusingget]]
+=== getAdmin
+....
+GET /admin
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* test-session
+
+
+[[_culoginpageusingget]]
+=== 企业用户登录界面
+....
+GET /culogin
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* path-controller
+
+
+[[_errorusingpost]]
+=== error
+....
+POST /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_errorusingget]]
+=== error
+....
+GET /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_errorusingput]]
+=== error
+....
+PUT /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_errorusingdelete]]
+=== error
+....
+DELETE /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_errorusingpatch]]
+=== error
+....
+PATCH /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_errorusinghead]]
+=== error
+....
+HEAD /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_errorusingoptions]]
+=== error
+....
+OPTIONS /error
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* basic-error-controller
+
+
+[[_addexpirusingpost]]
+=== 为此身份证添加工作经历信息，使用此功能用户必须已经关联公司id
+....
+POST /find/addexpir
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**cId** +
+__optional__||integer (int32)
+|**Query**|**cId** +
+__optional__||string
+|**Query**|**cuBirth** +
+__optional__||string
+|**Query**|**cuEamil** +
+__optional__||string
+|**Query**|**cuGender** +
+__optional__||boolean
+|**Query**|**cuId** +
+__optional__||integer (int32)
+|**Query**|**cuId** +
+__required__||integer (int32)
+|**Query**|**cuId** +
+__optional__||string
+|**Query**|**cuName** +
+__optional__||string
+|**Query**|**cuPassword** +
+__optional__||string
+|**Query**|**cuTel** +
+__optional__||string
+|**Query**|**eBehavior** +
+__optional__||string
+|**Query**|**eEndTime** +
+__optional__||string
+|**Query**|**eReason** +
+__optional__||string
+|**Query**|**eRole** +
+__optional__||string
+|**Query**|**eStartTime** +
+__optional__||string
+|**Query**|**uCard** +
+__required__||string
+|**Query**|**uCard** +
+__optional__||string
+|**Body**|**state** +
+__required__|负责检验用户是否具备查询此id的条件，如果具备，显示此身份证的基本信息|<<_cucheckstate,CuCheckState>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_e249bf1902de7f75aaed353ffea96339,Result«string»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_addcompanyapplyusingpost]]
+=== 申请关联公司接口
+....
+POST /find/apply
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**aResult** +
+__optional__||integer (int32)
+|**Query**|**cId** +
+__optional__||integer (int32)
+|**Query**|**cId** +
+__required__||integer (int32)
+|**Query**|**cRegistcode** +
+__required__||string
+|**Query**|**caId** +
+__optional__||integer (int32)
+|**Query**|**cuBirth** +
+__optional__||string
+|**Query**|**cuEamil** +
+__optional__||string
+|**Query**|**cuGender** +
+__optional__||boolean
+|**Query**|**cuId** +
+__optional__||integer (int32)
+|**Query**|**cuId** +
+__required__||integer (int32)
+|**Query**|**cuName** +
+__optional__||string
+|**Query**|**cuPassword** +
+__optional__||string
+|**Query**|**cuTel** +
+__optional__||string
+|**Body**|**companyApply** +
+__required__|申请信息|<<_companyapply,CompanyApply>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_72839f641ce130c8a6904a9ec5cebbe6,Result«object»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_checkcodeusingpost]]
+=== 核对验证码接口
+....
+POST /find/checkcode
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**cId** +
+__optional__||integer (int32)
+|**Query**|**checkCode** +
+__optional__||string
+|**Query**|**cuBirth** +
+__optional__||string
+|**Query**|**cuEamil** +
+__optional__||string
+|**Query**|**cuGender** +
+__optional__||boolean
+|**Query**|**cuId** +
+__optional__||integer (int32)
+|**Query**|**cuName** +
+__optional__||string
+|**Query**|**cuPassword** +
+__optional__||string
+|**Query**|**cuTel** +
+__optional__||string
+|**Query**|**idCard** +
+__required__||string
+|**Body**|**findVo** +
+__required__|主要是传入手机收到的验证码进行核对|<<_findvo,FindVo>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_e249bf1902de7f75aaed353ffea96339,Result«string»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_findexpirusingget]]
+=== findExpir
+....
+GET /find/findexpri
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**cId** +
+__optional__||integer (int32)
+|**Query**|**cuBirth** +
+__optional__||string
+|**Query**|**cuEamil** +
+__optional__||string
+|**Query**|**cuGender** +
+__optional__||boolean
+|**Query**|**cuId** +
+__optional__||integer (int32)
+|**Query**|**cuId** +
+__required__||integer (int32)
+|**Query**|**cuName** +
+__optional__||string
+|**Query**|**cuPassword** +
+__optional__||string
+|**Query**|**cuTel** +
+__optional__||string
+|**Query**|**uCard** +
+__required__||string
+|**Body**|**state** +
+__required__|负责检验用户是否具备查询此id的条件，如果具备，显示此身份证的基本信息|<<_cucheckstate,CuCheckState>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_e05b42b72dbd7844bac9280edcadc003,Result«List«Expirence»»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_getapplyresultusingget]]
+=== getApplyResult
+....
+GET /find/getresult
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**cId** +
+__optional__|integer (int32)
+|**Query**|**cuBirth** +
+__optional__|string
+|**Query**|**cuEamil** +
+__optional__|string
+|**Query**|**cuGender** +
+__optional__|boolean
+|**Query**|**cuId** +
+__optional__|integer (int32)
+|**Query**|**cuName** +
+__optional__|string
+|**Query**|**cuPassword** +
+__optional__|string
+|**Query**|**cuTel** +
+__optional__|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_72839f641ce130c8a6904a9ec5cebbe6,Result«object»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_getuserusingget]]
+=== 进行获取工作经历信息,state信息存在redis,超时失效无法获取
+....
+GET /find/getuser
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**cId** +
+__optional__||integer (int32)
+|**Query**|**cuBirth** +
+__optional__||string
+|**Query**|**cuEamil** +
+__optional__||string
+|**Query**|**cuGender** +
+__optional__||boolean
+|**Query**|**cuId** +
+__optional__||integer (int32)
+|**Query**|**cuId** +
+__required__||integer (int32)
+|**Query**|**cuName** +
+__optional__||string
+|**Query**|**cuPassword** +
+__optional__||string
+|**Query**|**cuTel** +
+__optional__||string
+|**Query**|**uCard** +
+__required__||string
+|**Body**|**state** +
+__required__|负责检验用户是否具备查询此id的条件，如果具备，显示此身份证的基本信息|<<_cucheckstate,CuCheckState>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_fb1b8ace2ab1fdd0a80cb1047b3e1500,Result«User1»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_sendcodeusingpost]]
+=== 发送验证码接口
+....
+POST /find/sendcode
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**cId** +
+__optional__||integer (int32)
+|**Query**|**checkCode** +
+__optional__||string
+|**Query**|**cuBirth** +
+__optional__||string
+|**Query**|**cuEamil** +
+__optional__||string
+|**Query**|**cuGender** +
+__optional__||boolean
+|**Query**|**cuId** +
+__optional__||integer (int32)
+|**Query**|**cuName** +
+__optional__||string
+|**Query**|**cuPassword** +
+__optional__||string
+|**Query**|**cuTel** +
+__optional__||string
+|**Query**|**idCard** +
+__required__||string
+|**Body**|**findVo** +
+__required__|主要是传入需要查询的身份证号码，通过身份证号给此人手机发送验证码|<<_findvo,FindVo>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_72839f641ce130c8a6904a9ec5cebbe6,Result«object»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* company-user-controller
+
+
+[[_leve1usingget]]
+=== leve1
+....
+GET /leve1/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* path-controller
+
+
+[[_leve2usingget]]
+=== leve2
+....
+GET /leve2/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* path-controller
+
+
+[[_leve3usingget]]
+=== leve3
+....
+GET /leve3/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* path-controller
+
+
+[[_loginpageusingget]]
+=== 普通用户登录界面
+....
+GET /login
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* path-controller
+
+
+[[_doculoginusingpost]]
+=== 用于企业用户登录的接口
+....
+POST /login/do_culogin
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**cId** +
+__optional__|integer (int32)
+|**Query**|**cuBirth** +
+__optional__|string
+|**Query**|**cuEamil** +
+__optional__|string
+|**Query**|**cuGender** +
+__optional__|boolean
+|**Query**|**cuId** +
+__optional__|integer (int32)
+|**Query**|**cuName** +
+__optional__|string
+|**Query**|**cuPassword** +
+__optional__|string
+|**Query**|**cuTel** +
+__optional__|string
+|**Query**|**mobile** +
+__optional__|string
+|**Query**|**password** +
+__optional__|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_e249bf1902de7f75aaed353ffea96339,Result«string»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* login-controller
+
+
+[[_dologinusingpost]]
+=== 用于普通用户登录的接口
+....
+POST /login/do_login
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^4"]
+|===
+|Type|Name|Schema
+|**Query**|**mobile** +
+__optional__|string
+|**Query**|**password** +
+__optional__|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_e249bf1902de7f75aaed353ffea96339,Result«string»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* login-controller
+
+
+[[_tologinusingget]]
+=== toLogin
+....
+GET /login/to_login
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* login-controller
+
+
+[[_testusingget]]
+=== test
+....
+GET /session
+....
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* test-session
+
+
+

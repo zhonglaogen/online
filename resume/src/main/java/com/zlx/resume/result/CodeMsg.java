@@ -29,6 +29,7 @@ public class CodeMsg {
 
     //添加关联公司模块 5004XX
     public static CodeMsg COMPANY_IS_EXIST = new CodeMsg(500400, "关联公司已经存在");
+    public static CodeMsg APPLY_IS_COMMIT = new CodeMsg(500400, "已经提交申请");
 
     //秒杀模块 5005XX
 

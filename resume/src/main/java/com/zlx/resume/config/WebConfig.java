@@ -3,6 +3,7 @@ package com.zlx.resume.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
@@ -33,4 +34,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         //转换CuCheckState的参数转换器
         argumentResolvers.add(companyFindArgumentResolver);
     }
+
+
+
 }

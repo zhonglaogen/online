@@ -2,7 +2,7 @@ package com.zlx.resume.redis;
 
 public class CompanyKey extends BasePrefix {
 
-    public static final int TOKEN_EXPIRE = 3600*24 *2;//默认两天
+    public static final int TOKEN_EXPIRE = 60*60*24*30*12;//默认两天
 
     private CompanyKey(int expireSeconds, String prefix) {
         super(expireSeconds, prefix);
@@ -14,10 +14,12 @@ public class CompanyKey extends BasePrefix {
      */
     //公司登录信息的token
     public static CompanyKey token = new CompanyKey(TOKEN_EXPIRE,"cutoken");
-    //公司登录信息的session
-    public static CompanyKey getById = new CompanyKey(0, "cuid");
+    public static CompanyKey NullStr = new CompanyKey(60*60*24*30*12, "");
+    //公司登录信息的验证
+    public static CompanyKey getById = new CompanyKey(60*60*24*30*12, "cuid");
     //公司查询简历的验证码
-    public static CompanyKey getCode = new CompanyKey(60*10, "cucode");
+    public static CompanyKey getCode = new CompanyKey(60*60*24*30*12, "cucode");
     //公司验证码正确生成的验证正确信息
-    public static CompanyKey getUserToken = new CompanyKey(60*60*24, "cufindtoken");
+    public static CompanyKey getUserToken = new CompanyKey(60*60*24*30*12, "cufindtoken");
+
 }
