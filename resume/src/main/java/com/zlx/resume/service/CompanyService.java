@@ -17,6 +17,7 @@ import com.zlx.resume.redis.RedisService;
 import com.zlx.resume.redis.UserKey;
 import com.zlx.resume.result.CodeMsg;
 import com.zlx.resume.util.UUIDUtil;
+import com.zlx.resume.vo.CompanyAndApply;
 import com.zlx.resume.vo.LoginVo;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,8 +81,9 @@ public class CompanyService {
      * 查看申请请求
      * @param cuser
      */
-    public List<CompanyApply> findApply(Companyuser cuser){
-        return this.applyMapper.findApply(cuser);
+    public List<CompanyAndApply> findApply(Companyuser cuser){
+//        return this.applyMapper.findApply(cuser);
+        return null;
 
     }
 

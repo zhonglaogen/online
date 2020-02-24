@@ -373,6 +373,66 @@ public class CompanyExample {
             addCriterion("c_registcode not between", value1, value2, "cRegistcode");
             return (Criteria) this;
         }
+
+        public Criteria andCRealyIsNull() {
+            addCriterion("c_realy is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyIsNotNull() {
+            addCriterion("c_realy is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyEqualTo(Integer value) {
+            addCriterion("c_realy =", value, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyNotEqualTo(Integer value) {
+            addCriterion("c_realy <>", value, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyGreaterThan(Integer value) {
+            addCriterion("c_realy >", value, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyGreaterThanOrEqualTo(Integer value) {
+            addCriterion("c_realy >=", value, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyLessThan(Integer value) {
+            addCriterion("c_realy <", value, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyLessThanOrEqualTo(Integer value) {
+            addCriterion("c_realy <=", value, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyIn(List<Integer> values) {
+            addCriterion("c_realy in", values, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyNotIn(List<Integer> values) {
+            addCriterion("c_realy not in", values, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyBetween(Integer value1, Integer value2) {
+            addCriterion("c_realy between", value1, value2, "cRealy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCRealyNotBetween(Integer value1, Integer value2) {
+            addCriterion("c_realy not between", value1, value2, "cRealy");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

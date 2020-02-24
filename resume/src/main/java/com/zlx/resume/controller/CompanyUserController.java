@@ -11,6 +11,7 @@ import com.zlx.resume.result.Result;
 import com.zlx.resume.service.AddExpirenceService;
 import com.zlx.resume.service.CompanyService;
 import com.zlx.resume.service.FindUserService;
+import com.zlx.resume.vo.CompanyAndApply;
 import com.zlx.resume.vo.FindVo;
 import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
@@ -69,11 +70,11 @@ public class CompanyUserController {
      * @return
      */
     @GetMapping("/getresult")
-    public Result<List<CompanyApply>> getApplyResult(Companyuser user) {
+    public Result<List<CompanyAndApply>> getApplyResult(Companyuser user) {
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
-        List<CompanyApply> apply = companyService.findApply(user);
+        List<CompanyAndApply> apply = companyService.findApply(user);
 
         return Result.success(apply);
 
@@ -82,7 +83,8 @@ public class CompanyUserController {
     /**
      * 取消申请
      */
-    public Result cancelApply(Companyuser user,CompanyApply companyApply){
+    @GetMapping("cancelapply")
+    public Result<String> cancelApply(Companyuser user,CompanyApply companyApply){
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }
@@ -100,7 +102,7 @@ public class CompanyUserController {
     @ApiOperation(value = "发送验证码接口")
     @ApiImplicitParam(name = "findVo", value = "主要是传入需要查询的身份证号码，通过身份证号给此人手机发送验证码", required = true, dataType = "FindVo")
     @PostMapping("/sendcode")
-    public Result<Object> sendCode(Companyuser user, FindVo findVo) {
+    public Result<String> sendCode(Companyuser user, FindVo findVo) {
         if (user == null) {
             return Result.error(CodeMsg.SESSION_ERROR);
         }

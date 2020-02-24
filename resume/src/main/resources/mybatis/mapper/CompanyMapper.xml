@@ -6,6 +6,7 @@
     <result column="c_name" property="cName" jdbcType="VARCHAR" />
     <result column="c_location" property="cLocation" jdbcType="VARCHAR" />
     <result column="c_registcode" property="cRegistcode" jdbcType="VARCHAR" />
+    <result column="c_realy" property="cRealy" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.zlx.resume.entity.Company" extends="BaseResultMap" >
     <result column="c_ describe" property="cDescribe" jdbcType="LONGVARCHAR" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    c_id, c_name, c_location, c_registcode
+    c_id, c_name, c_location, c_registcode, c_realy
   </sql>
   <sql id="Blob_Column_List" >
     "c_ describe"
@@ -124,9 +125,11 @@
   </delete>
   <insert id="insert" parameterType="com.zlx.resume.entity.Company" >
     insert into company (c_id, c_name, c_location, 
-      c_registcode, "c_ describe")
+      c_registcode, c_realy, "c_ describe"
+      )
     values (#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cLocation,jdbcType=VARCHAR}, 
-      #{cRegistcode,jdbcType=VARCHAR}, #{cDescribe,jdbcType=LONGVARCHAR})
+      #{cRegistcode,jdbcType=VARCHAR}, #{cRealy,jdbcType=INTEGER}, #{cDescribe,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zlx.resume.entity.Company" >
     insert into company
@@ -142,6 +145,9 @@
       </if>
       <if test="cRegistcode != null" >
         c_registcode,
+      </if>
+      <if test="cRealy != null" >
+        c_realy,
       </if>
       <if test="cDescribe != null" >
         "c_ describe",
@@ -159,6 +165,9 @@
       </if>
       <if test="cRegistcode != null" >
         #{cRegistcode,jdbcType=VARCHAR},
+      </if>
+      <if test="cRealy != null" >
+        #{cRealy,jdbcType=INTEGER},
       </if>
       <if test="cDescribe != null" >
         #{cDescribe,jdbcType=LONGVARCHAR},
@@ -186,6 +195,9 @@
       <if test="record.cRegistcode != null" >
         c_registcode = #{record.cRegistcode,jdbcType=VARCHAR},
       </if>
+      <if test="record.cRealy != null" >
+        c_realy = #{record.cRealy,jdbcType=INTEGER},
+      </if>
       <if test="record.cDescribe != null" >
         "c_ describe" = #{record.cDescribe,jdbcType=LONGVARCHAR},
       </if>
@@ -200,6 +212,7 @@
       c_name = #{record.cName,jdbcType=VARCHAR},
       c_location = #{record.cLocation,jdbcType=VARCHAR},
       c_registcode = #{record.cRegistcode,jdbcType=VARCHAR},
+      c_realy = #{record.cRealy,jdbcType=INTEGER},
       "c_ describe" = #{record.cDescribe,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -210,7 +223,8 @@
     set c_id = #{record.cId,jdbcType=INTEGER},
       c_name = #{record.cName,jdbcType=VARCHAR},
       c_location = #{record.cLocation,jdbcType=VARCHAR},
-      c_registcode = #{record.cRegistcode,jdbcType=VARCHAR}
+      c_registcode = #{record.cRegistcode,jdbcType=VARCHAR},
+      c_realy = #{record.cRealy,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +241,9 @@
       <if test="cRegistcode != null" >
         c_registcode = #{cRegistcode,jdbcType=VARCHAR},
       </if>
+      <if test="cRealy != null" >
+        c_realy = #{cRealy,jdbcType=INTEGER},
+      </if>
       <if test="cDescribe != null" >
         "c_ describe" = #{cDescribe,jdbcType=LONGVARCHAR},
       </if>
@@ -238,6 +255,7 @@
     set c_name = #{cName,jdbcType=VARCHAR},
       c_location = #{cLocation,jdbcType=VARCHAR},
       c_registcode = #{cRegistcode,jdbcType=VARCHAR},
+      c_realy = #{cRealy,jdbcType=INTEGER},
       "c_ describe" = #{cDescribe,jdbcType=LONGVARCHAR}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
@@ -245,7 +263,8 @@
     update company
     set c_name = #{cName,jdbcType=VARCHAR},
       c_location = #{cLocation,jdbcType=VARCHAR},
-      c_registcode = #{cRegistcode,jdbcType=VARCHAR}
+      c_registcode = #{cRegistcode,jdbcType=VARCHAR},
+      c_realy = #{cRealy,jdbcType=INTEGER}
     where c_id = #{cId,jdbcType=INTEGER}
   </update>
 </mapper>

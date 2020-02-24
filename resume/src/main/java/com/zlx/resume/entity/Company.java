@@ -9,6 +9,8 @@ public class Company {
 
     private String cRegistcode;
 
+    private Integer cRealy;
+
     private String cDescribe;
 
     public Integer getcId() {
@@ -41,6 +43,14 @@ public class Company {
 
     public void setcRegistcode(String cRegistcode) {
         this.cRegistcode = cRegistcode == null ? null : cRegistcode.trim();
+    }
+
+    public Integer getcRealy() {
+        return cRealy;
+    }
+
+    public void setcRealy(Integer cRealy) {
+        this.cRealy = cRealy;
     }
 
     public String getcDescribe() {
